@@ -3069,6 +3069,7 @@ function clean(test) {
       title: test.title
     , fullTitle: test.fullTitle()
     , duration: test.duration
+    , err: test.err
   }
 }
 }); // module: reporters/json.js
