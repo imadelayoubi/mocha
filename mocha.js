@@ -3038,8 +3038,13 @@ function JSONReporter(runner) {
     passes.push(test);
   });
 
-  runner.on('fail', function(test){
-    failures.push(test);
+  runner.on('fail', function(failedObj, exception){
+    if(failedObj.type == 'hook'){
+      console.warn('Mocha is failing on a hook (probably aborting the rest of the spec)');
+      console.warn(failedObj, exception);
+    } else {
+      failures.push(failedObj);
+    }
   });
 
   runner.on('end', function(){
